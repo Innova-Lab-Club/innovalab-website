@@ -1,0 +1,8 @@
+<section class="section events-section" id="events">
+  <div class="container">
+    <div class="events-heading"><div><p class="eyebrow">03 — Get involved</p><h2>Ways to<br><em>take part.</em></h2></div><a class="text-link dark-link" href="#join">Start a conversation <span>↗</span></a></div>
+    <div class="event-list">
+      @for (event of events; track event.title) { <article class="event-row"><div class="event-date"><strong>{{ event.day }}</strong><span>{{ event.month }}</span></div><div class="event-type">{{ event.type }}</div><div class="event-details"><h3>{{ event.title }}</h3><p>{{ event.meta }}</p></div><a class="round-arrow" href="#join" [attr.aria-label]="'Learn more about ' + event.title">↗</a></article> }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+<header class="site-header" [class.is-scrolled]="isScrolled">
+  <nav class="container nav-shell" aria-label="Main navigation">
+    <a class="brand" href="#top" aria-label="InnovaLab home">
+      <img class="brand-logo" src="innovalabLogo.jpeg" alt="InnovaLab">
+      <span class="brand-name">Innova<span>’Lab</span></span>
+    </a>
+    <div class="desktop-nav">
+      @for (link of navLinks; track link.label) {
+        <a [href]="link.href">{{ link.label }}</a>
+      }
+    </div>
+    <a class="button button-small button-dark desktop-join" href="#join">Join the club <span>↗</span></a>
+    <button class="menu-toggle" type="button" (click)="menuOpen = !menuOpen" [attr.aria-expanded]="menuOpen" aria-label="Toggle menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+  @if (menuOpen) {
+    <div class="mobile-nav">
+      @for (link of navLinks; track link.label) {
+        <a [href]="link.href" (click)="menuOpen = false">{{ link.label }}</a>
+      }
+      <a class="button button-dark" href="#join" (click)="menuOpen = false">Join the club <span>↗</span></a>
+    </div>
+  }
+</header>

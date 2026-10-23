@@ -1,0 +1,8 @@
+<section class="section focus-section" id="activities">
+  <div class="container">
+    <div class="section-intro"><div><p class="eyebrow">02 — The club in practice</p><h2>Learn by<br><em>making.</em></h2></div><p class="intro-text">A simple rhythm: discover something, work on it with others, then share what you learned.</p></div>
+    <div class="focus-grid">
+      @for (focus of focusAreas; track focus.number) { <article class="focus-card" [class.featured]="focus.featured"><div class="focus-number">{{ focus.number }}</div><div class="focus-icon" [innerHTML]="focus.icon"></div><h3>{{ focus.title }}</h3><p>{{ focus.text }}</p><a href="#join" [attr.aria-label]="'Learn more about ' + focus.title">Explore <span>↗</span></a></article> }
+    </div>
+  </div>
+</section>
