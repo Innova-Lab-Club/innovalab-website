@@ -1,0 +1,64 @@
+<section class="section" id="projects">
+  <div class="container-x">
+    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end" appReveal>
+      <div>
+        <span class="eyebrow">Projects</span>
+        <h2 class="section-title">Built by<br><span class="highlight">students.</span></h2>
+      </div>
+      <p class="max-w-sm leading-relaxed text-slate-400">
+        Every project starts as a question someone asked at a meetup. Here is what our members are building.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      @for (project of projects; track project.title; let i = $index) {
+        <article class="card group flex flex-col transition duration-500 hover:-translate-y-1 hover:border-white/15"
+                 appSpotlight [appReveal]="(i % 3) * 100">
+          <!-- visual -->
+          <div class="relative h-44 overflow-hidden border-b border-white/[0.06] {{ project.accent }}">
+            <div class="grid-bg absolute inset-0 opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent)]"></div>
+            <div class="absolute inset-0 grid place-items-center">
+              <span class="grid h-20 w-20 place-items-center rounded-3xl border border-white/15 bg-ink-950 text-brand-cream transition duration-500 group-hover:scale-110 group-hover:rotate-3">
+                <app-icon [name]="project.icon" class="h-9 w-9" />
+              </span>
+            </div>
+            <span class="absolute left-4 top-4 rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider {{ statusStyles[project.status] }}">
+              {{ project.status }}
+            </span>
+          </div>
+
+          <!-- body -->
+          <div class="relative flex flex-1 flex-col p-6">
+            <div class="flex items-start justify-between gap-4">
+              <h3 class="text-xl font-semibold">{{ project.title }}</h3>
+              @if (project.link) {
+                <a [href]="project.link" target="_blank" rel="noreferrer"
+                   class="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-white/10 text-slate-300 transition hover:border-brand-blue/50 hover:bg-brand-blue/10 hover:text-brand-cream"
+                   [attr.aria-label]="'Open ' + project.title">
+                  <app-icon name="arrow-up-right" class="h-4 w-4" />
+                </a>
+              }
+            </div>
+            <p class="mt-2 flex-1 leading-relaxed text-slate-400">{{ project.description }}</p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              @for (tag of project.tags; track tag) {
+                <span class="chip">{{ tag }}</span>
+              }
+            </div>
+          </div>
+        </article>
+      }
+
+      <!-- CTA tile -->
+      <a href="#join"
+         class="group flex flex-col items-center justify-center gap-4 rounded-3xl border border-dashed border-white/15 p-10 text-center transition hover:border-brand-blue/50 hover:bg-brand-blue/[0.04]"
+         appReveal="200">
+        <span class="grid h-14 w-14 place-items-center rounded-full border border-white/15 text-slate-300 transition group-hover:rotate-90 group-hover:border-brand-blue/60 group-hover:text-brand-cream">
+          <app-icon name="plus" class="h-6 w-6" />
+        </span>
+        <span class="font-display text-lg font-semibold text-brand-cream">Your project here</span>
+        <span class="max-w-[16rem] text-sm text-slate-400">Have an idea? Pitch it to the club and build it with a team.</span>
+      </a>
+    </div>
+  </div>
+</section>

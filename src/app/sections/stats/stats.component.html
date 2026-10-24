@@ -1,6 +1,14 @@
-<section class="stats-strip">
-  <div class="container stats-grid">
-    @for (stat of stats; track stat.label) { <div class="stat"><strong>{{ stat.value }}</strong><span>{{ stat.label }}</span></div> }
-    <p class="stat-message">Small steps.<br><em>Big possibilities.</em></p>
+<section class="relative pt-24 sm:pt-28" aria-label="Club in numbers">
+  <div class="container-x">
+    <div class="grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.06] lg:grid-cols-4" appReveal>
+      @for (stat of stats; track stat.label) {
+        <div class="bg-ink-950 px-6 py-8 text-center sm:py-10">
+          <p class="font-display text-4xl font-semibold text-brand-cream sm:text-5xl">
+            <span [appCountUp]="stat.value" [suffix]="stat.suffix ?? ''">{{ stat.value }}{{ stat.suffix }}</span>
+          </p>
+          <p class="mt-2 text-sm text-slate-400">{{ stat.label }}</p>
+        </div>
+      }
+    </div>
   </div>
 </section>

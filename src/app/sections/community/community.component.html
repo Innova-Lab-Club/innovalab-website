@@ -1,6 +1,35 @@
-<section class="section people-section" id="community">
-  <div class="container people-grid">
-    <div class="people-copy"><p class="eyebrow">04 — Our community</p><h2>Bring your<br><em>point of view.</em></h2><p>You do not need to arrive with a finished project. Bring your questions, your skills, or simply the desire to learn alongside other students.</p><a class="button button-primary" href="#join">Find your place <span>↗</span></a></div>
-    <div class="people-collage"><div class="collage-card collage-one"><span>BUILD</span><small>together</small></div><div class="collage-card collage-two"><span>LEARN</span><small>every day</small></div><div class="collage-card collage-three"><span>SHARE</span><small>what matters</small></div><div class="collage-note">“The best part is that<br>everyone has a seat<br>at the table.” <span>— InnovaLab member</span></div></div>
+<section class="relative py-12 sm:py-16" id="community">
+  <div class="container-x">
+    <div class="relative isolate overflow-hidden rounded-[2rem] bg-brand-ice px-6 py-14 sm:px-14 sm:py-20" appReveal>
+
+      <div class="grid items-center gap-10 lg:grid-cols-[1.3fr_1fr]">
+        <figure>
+          <span class="font-display text-7xl leading-none text-brand-blue">“</span>
+          <blockquote class="-mt-6 font-display text-2xl font-medium leading-snug text-ink-950 sm:text-3xl lg:text-4xl">
+            The best part is that everyone has a seat at the table. You come for a workshop, you stay for the people.
+          </blockquote>
+          <figcaption class="mt-6 text-sm font-medium text-ink-950/70">InnovaLab member</figcaption>
+        </figure>
+
+        <div class="rounded-3xl bg-ink-950 p-7">
+          <h3 class="text-xl font-semibold">Follow the journey</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-400">
+            Workshops, hackathons and behind-the-scenes. We post everything on our socials first.
+          </p>
+          <div class="mt-6 space-y-3">
+            @for (social of socialLinks; track social.label) {
+              <a [href]="social.href" target="_blank" rel="noreferrer"
+                 class="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3 pr-4 transition hover:border-brand-blue/40 hover:bg-white/[0.06]">
+                <span class="grid h-10 w-10 place-items-center rounded-xl bg-brand-deep text-white">
+                  <app-icon [name]="social.icon" class="h-5 w-5" />
+                </span>
+                <span class="flex-1 font-medium text-brand-cream">{{ social.label }}</span>
+                <app-icon name="arrow-up-right" class="h-4 w-4 text-slate-500 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-cream" />
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

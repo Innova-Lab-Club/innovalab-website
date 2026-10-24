@@ -1,14 +1,164 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ink-950 font-sans text-slate-300 antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-brand-blue text-white;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-brand-cream;
+    letter-spacing: -0.025em;
+  }
+
+  :focus-visible {
+    @apply outline outline-2 outline-offset-[3px] outline-brand-blue;
+    border-radius: 6px;
+  }
 }
 
-body {
-  margin: 0;
-  background: #f6f8f7;
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .section {
+    @apply relative isolate py-20 sm:py-28;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.18em] text-slate-400;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply h-2 w-2 bg-brand-blue;
+  }
+
+  .section-title {
+    @apply mt-5 text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-6xl;
+  }
+
+  .section-lead {
+    @apply mt-5 max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg;
+  }
+
+  /* Highlighted word in headings: the logo blue, flat. */
+  .highlight {
+    @apply text-brand-sky;
+  }
+
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-deep text-white hover:-translate-y-0.5 hover:bg-brand-blue;
+  }
+
+  .btn-ghost {
+    @apply btn border border-white/15 text-brand-cream hover:border-white/40 hover:bg-white/[0.04];
+  }
+
+  .card {
+    @apply relative overflow-hidden rounded-3xl border border-white/[0.08] bg-ink-900;
+  }
+
+  /* Subtle cursor-following highlight; position is set by the appSpotlight directive. */
+  .spotlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s;
+    background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(242, 239, 232, 0.05), transparent 60%);
+  }
+
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-white/10 px-2.5 py-1 font-mono text-[11px] text-slate-300;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-white/10 bg-ink-950 px-4 py-3 text-sm text-brand-cream placeholder-slate-500 outline-none transition focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/15;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(242, 239, 232, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(242, 239, 232, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+}
+
+/* Scroll reveal (driven by the appReveal directive). Uses `translate` + animation
+   so it never fights with Tailwind transform/transition utilities on the same element. */
+.reveal {
+  opacity: 0;
+}
+
+.reveal.is-visible {
+  animation: reveal-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes reveal-in {
+  from { opacity: 0; translate: 0 24px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.animate-spin-slow { animation: spin-slow 22s linear infinite; }
+.animate-spin-slower { animation: spin-slow 40s linear infinite reverse; }
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-float-delayed { animation: float 7s ease-in-out 1.5s infinite; }
+.animate-marquee { animation: marquee 40s linear infinite; }
+.animate-blink { animation: blink 1s step-end infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .reveal, .reveal.is-visible { opacity: 1; animation: none; }
+
+  .animate-spin-slow,
+  .animate-spin-slower,
+  .animate-float,
+  .animate-float-delayed,
+  .animate-marquee,
+  .animate-blink { animation: none; }
 }

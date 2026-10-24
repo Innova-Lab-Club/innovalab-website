@@ -1,8 +1,37 @@
-<section class="section focus-section" id="activities">
-  <div class="container">
-    <div class="section-intro"><div><p class="eyebrow">02 — The club in practice</p><h2>Learn by<br><em>making.</em></h2></div><p class="intro-text">A simple rhythm: discover something, work on it with others, then share what you learned.</p></div>
-    <div class="focus-grid">
-      @for (focus of focusAreas; track focus.number) { <article class="focus-card" [class.featured]="focus.featured"><div class="focus-number">{{ focus.number }}</div><div class="focus-icon" [innerHTML]="focus.icon"></div><h3>{{ focus.title }}</h3><p>{{ focus.text }}</p><a href="#join" [attr.aria-label]="'Learn more about ' + focus.title">Explore <span>↗</span></a></article> }
+<section class="section" id="activities">
+  <div class="container-x">
+    <div class="mx-auto max-w-2xl text-center" appReveal>
+      <span class="eyebrow">What we do</span>
+      <h2 class="section-title">Three verbs.<br><span class="highlight">One club.</span></h2>
+      <p class="section-lead mx-auto">
+        Our motto is our method: discover something new, build it with others, then share what you made.
+      </p>
+    </div>
+
+    <div class="mt-16 grid gap-4 lg:grid-cols-3">
+      @for (focus of focusAreas; track focus.title; let i = $index) {
+        <article class="card group flex flex-col p-8 transition duration-500 hover:-translate-y-1 hover:border-brand-blue/30"
+                 appSpotlight [appReveal]="i * 120">
+          <app-icon [name]="focus.icon"
+                    class="pointer-events-none absolute -right-8 -top-8 h-40 w-40 text-brand-cream/[0.03] transition duration-700 group-hover:rotate-12 group-hover:text-brand-blue/10" />
+
+          <div class="relative flex items-center gap-3">
+            <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-blue text-brand-cream">
+              <app-icon [name]="focus.icon" class="h-5 w-5" />
+            </span>
+            <span class="font-mono text-xs uppercase tracking-[0.16em] text-slate-500">{{ focus.subtitle }}</span>
+          </div>
+
+          <h3 class="relative mt-10 text-4xl font-semibold sm:text-5xl">{{ focus.title }}<span class="text-brand-sky">.</span></h3>
+          <p class="relative mt-4 flex-1 leading-relaxed text-slate-400">{{ focus.text }}</p>
+
+          <div class="relative mt-8 flex flex-wrap gap-2">
+            @for (topic of focus.topics; track topic) {
+              <span class="chip">{{ topic }}</span>
+            }
+          </div>
+        </article>
+      }
     </div>
   </div>
 </section>

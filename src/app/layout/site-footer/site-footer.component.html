@@ -1,13 +1,56 @@
-<footer class="site-footer">
-  <div class="container footer-top">
-    <a class="brand footer-brand" href="#top"><img class="brand-logo" src="innovalabLogo.jpeg" alt="InnovaLab"></a>
-    <p>Student innovation club<br>ISET Medenine, Tunisia</p>
-    <div class="footer-links">
-      <a href="#about">Mission</a><a href="#activities">Activities</a><a href="#community">Community</a>
-      <a href="https://github.com/Innova-Lab-Club" target="_blank" rel="noreferrer">GitHub</a>
+<footer class="relative overflow-hidden border-t border-white/[0.06] bg-ink-950 pt-20">
+  <div class="container-x">
+    <div class="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div>
+        <a href="#top" class="flex items-center gap-3">
+          <img src="innovalabLogo.jpeg" alt="" width="44" height="44" class="h-11 w-11 rounded-full ring-1 ring-white/20">
+          <span class="font-display text-xl font-semibold text-brand-cream">Innova<span class="highlight">’Lab</span></span>
+        </a>
+        <p class="mt-5 max-w-xs text-sm leading-relaxed text-slate-400">
+          The student innovation club of ISET Medenine. Innover, Programmer, Créer.
+        </p>
+        <div class="mt-6 flex gap-2">
+          @for (social of socialLinks; track social.label) {
+            <a [href]="social.href" target="_blank" rel="noreferrer" [attr.aria-label]="social.label"
+               class="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.03] text-slate-300 transition hover:-translate-y-0.5 hover:border-brand-blue/50 hover:text-brand-cream">
+              <app-icon [name]="social.icon" class="h-[18px] w-[18px]" />
+            </a>
+          }
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-mono text-xs uppercase tracking-[0.18em] text-slate-500">Explore</h4>
+        <ul class="mt-5 space-y-3 text-sm">
+          @for (link of navLinks; track link.href) {
+            <li><a [href]="link.href" class="text-slate-300 transition hover:text-brand-cream">{{ link.label }}</a></li>
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-mono text-xs uppercase tracking-[0.18em] text-slate-500">Contact</h4>
+        <ul class="mt-5 space-y-3 text-sm text-slate-300">
+          <li class="flex items-center gap-2.5">
+            <app-icon name="mail" class="h-4 w-4 text-slate-500" />
+            <a [href]="'mailto:' + email" class="break-all transition hover:text-brand-cream">{{ email }}</a>
+          </li>
+          <li class="flex items-center gap-2.5">
+            <app-icon name="map-pin" class="h-4 w-4 text-slate-500" />
+            ISET Medenine, Tunisia
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-16 flex flex-col gap-3 border-t border-white/[0.06] py-8 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+      <span>© {{ year }} Innova’Lab Club. All rights reserved.</span>
+      <span>Built by club members with curiosity ✦</span>
     </div>
   </div>
-  <div class="container footer-bottom">
-    <span>© 2025 InnovaLab Club</span><span>Built with curiosity <span class="footer-star">✦</span></span><span>ISET Medenine</span>
+
+  <div aria-hidden="true"
+       class="pointer-events-none select-none text-center font-display text-[22vw] font-bold leading-[0.75] tracking-tighter text-brand-cream/[0.025]">
+    INNOVALAB
   </div>
 </footer>

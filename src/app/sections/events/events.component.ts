@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { events, EventItem } from '../../data/site-content';
+import { programs, Program } from '../../data/site-content';
+import { IconComponent } from '../../shared/icon.component';
+import { RevealDirective, SpotlightDirective } from '../../shared/effects.directives';
 
 @Component({
   selector: 'app-events',
   standalone: true,
+  imports: [IconComponent, RevealDirective, SpotlightDirective],
   templateUrl: './events.component.html'
 })
 export class EventsComponent {
-  readonly events: EventItem[] = events;
+  readonly programs: Program[] = programs;
 }

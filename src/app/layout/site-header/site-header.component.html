@@ -1,25 +1,58 @@
-<header class="site-header" [class.is-scrolled]="isScrolled">
-  <nav class="container nav-shell" aria-label="Main navigation">
-    <a class="brand" href="#top" aria-label="InnovaLab home">
-      <img class="brand-logo" src="innovalabLogo.jpeg" alt="InnovaLab">
-      <span class="brand-name">Innova<span>’Lab</span></span>
+<header class="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+  <nav
+    class="mx-auto flex max-w-6xl items-center justify-between rounded-2xl border px-3 py-2.5 transition-all duration-500 sm:px-4"
+    [class]="isScrolled || menuOpen
+      ? 'border-white/10 bg-ink-900/90 backdrop-blur-md'
+      : 'border-transparent bg-transparent'"
+    aria-label="Main navigation"
+  >
+    <a href="#top" class="group flex items-center gap-2.5" aria-label="Innova’Lab home">
+      <img src="innovalabLogo.jpeg" alt="" width="36" height="36"
+           class="h-9 w-9 rounded-full ring-1 ring-white/20 transition group-hover:ring-brand-blue/60">
+      <span class="font-display text-lg font-semibold tracking-tight text-brand-cream">
+        Innova<span class="highlight">’Lab</span>
+      </span>
     </a>
-    <div class="desktop-nav">
-      @for (link of navLinks; track link.label) {
-        <a [href]="link.href">{{ link.label }}</a>
+
+    <div class="hidden items-center gap-1 rounded-full border border-white/[0.06] bg-white/[0.03] p-1 md:flex">
+      @for (link of navLinks; track link.href) {
+        <a [href]="link.href"
+           class="rounded-full px-4 py-1.5 text-sm transition"
+           [class]="activeHref === link.href ? 'bg-white/10 text-brand-cream' : 'text-slate-400 hover:text-brand-cream'">
+          {{ link.label }}
+        </a>
       }
     </div>
-    <a class="button button-small button-dark desktop-join" href="#join">Join the club <span>↗</span></a>
-    <button class="menu-toggle" type="button" (click)="menuOpen = !menuOpen" [attr.aria-expanded]="menuOpen" aria-label="Toggle menu">
-      <span></span><span></span>
+
+    <a href="#join" class="btn-primary hidden !px-5 !py-2.5 md:inline-flex">
+      Join the club
+      <app-icon name="arrow-right" class="h-4 w-4" />
+    </a>
+
+    <button type="button"
+            class="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-brand-cream md:hidden"
+            (click)="menuOpen = !menuOpen"
+            [attr.aria-expanded]="menuOpen"
+            aria-controls="mobile-menu"
+            [attr.aria-label]="menuOpen ? 'Close menu' : 'Open menu'">
+      <app-icon [name]="menuOpen ? 'close' : 'menu'" class="h-5 w-5" />
     </button>
   </nav>
+
   @if (menuOpen) {
-    <div class="mobile-nav">
-      @for (link of navLinks; track link.label) {
-        <a [href]="link.href" (click)="menuOpen = false">{{ link.label }}</a>
+    <div id="mobile-menu"
+         class="mx-auto mt-2 max-w-6xl rounded-2xl border border-white/10 bg-ink-900 p-3 shadow-2xl md:hidden">
+      @for (link of navLinks; track link.href) {
+        <a [href]="link.href" (click)="menuOpen = false"
+           class="flex items-center justify-between rounded-xl px-4 py-3 text-base text-slate-200 hover:bg-white/5">
+          {{ link.label }}
+          <app-icon name="arrow-right" class="h-4 w-4 text-slate-500" />
+        </a>
       }
-      <a class="button button-dark" href="#join" (click)="menuOpen = false">Join the club <span>↗</span></a>
+      <a href="#join" (click)="menuOpen = false" class="btn-primary mt-2 w-full">
+        Join the club
+        <app-icon name="arrow-right" class="h-4 w-4" />
+      </a>
     </div>
   }
 </header>

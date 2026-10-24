@@ -1,3 +1,104 @@
-<section class="join-section" id="join">
-  <div class="container join-inner"><p class="eyebrow">05 — Your next step</p><h2>Have a question?<br><em>Let’s build from it.</em></h2><p>Reach out to Innova’Lab and find out what you can explore with the club at ISET Medenine.</p><a class="button button-light" href="https://github.com/Innova-Lab-Club" target="_blank" rel="noreferrer">Visit the club on GitHub <span>↗</span></a><div class="join-mark">✦</div></div>
+<section class="section overflow-hidden" id="join">
+  <div class="container-x grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+    <div class="lg:pt-6" appReveal>
+      <span class="eyebrow">Join us</span>
+      <h2 class="section-title">Your next idea<br><span class="highlight">starts here.</span></h2>
+      <p class="section-lead">
+        Tell us a little about yourself and what you’d like to explore. We’ll get back to you with the next
+        workshop and how to get started.
+      </p>
+
+      <ul class="mt-10 space-y-4">
+        @for (perk of ['Free for all ISET Medenine students', 'Beginner-friendly workshops every week', 'Real projects for your portfolio', 'A community that has your back']; track perk) {
+          <li class="flex items-center gap-3 text-slate-300">
+            <span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-blue/20 text-brand-sky">
+              <app-icon name="check" class="h-3.5 w-3.5" />
+            </span>
+            {{ perk }}
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="card p-6 sm:p-8" appReveal="120">
+      @if (submitted()) {
+        <div class="flex flex-col items-center py-12 text-center">
+          <span class="grid h-16 w-16 place-items-center rounded-full bg-brand-deep text-white">
+            <app-icon name="check" class="h-8 w-8" />
+          </span>
+          <h3 class="mt-6 text-2xl font-semibold">Almost there!</h3>
+          <p class="mt-3 max-w-sm text-slate-400">
+            Your email app should have opened with your message ready. Just hit send.
+            If nothing opened, write to us at
+            <a [href]="'mailto:' + email" class="text-brand-cream underline decoration-brand-blue/60 underline-offset-4">{{ email }}</a>.
+          </p>
+          <button type="button" class="btn-ghost mt-8" (click)="reset(joinForm)">Fill again</button>
+        </div>
+      }
+
+      <form #joinForm="ngForm" (ngSubmit)="submit(joinForm)" novalidate [class.hidden]="submitted()" class="relative space-y-5">
+        <div class="grid gap-5 sm:grid-cols-2">
+          <label class="block">
+            <span class="mb-2 block text-sm font-medium text-slate-300">Full name</span>
+            <input class="field" name="name" [(ngModel)]="model.name" #name="ngModel" required autocomplete="name" placeholder="Your name">
+            @if (name.invalid && name.touched) {
+              <span class="mt-1.5 block text-xs text-rose-400">Please enter your name.</span>
+            }
+          </label>
+          <label class="block">
+            <span class="mb-2 block text-sm font-medium text-slate-300">Email</span>
+            <input class="field" type="email" name="email" [(ngModel)]="model.email" #mail="ngModel" required email autocomplete="email" placeholder="you@example.com">
+            @if (mail.invalid && mail.touched) {
+              <span class="mt-1.5 block text-xs text-rose-400">Please enter a valid email.</span>
+            }
+          </label>
+        </div>
+
+        <div class="grid gap-5 sm:grid-cols-2">
+          <label class="block">
+            <span class="mb-2 block text-sm font-medium text-slate-300">Field of study</span>
+            <select class="field" name="field" [(ngModel)]="model.field">
+              <option value="" disabled>Select…</option>
+              @for (f of fields; track f) { <option [value]="f">{{ f }}</option> }
+            </select>
+          </label>
+          <label class="block">
+            <span class="mb-2 block text-sm font-medium text-slate-300">Year</span>
+            <select class="field" name="year" [(ngModel)]="model.year">
+              <option value="" disabled>Select…</option>
+              @for (y of years; track y) { <option [value]="y">{{ y }}</option> }
+            </select>
+          </label>
+        </div>
+
+        <fieldset>
+          <legend class="mb-2 text-sm font-medium text-slate-300">What interests you?</legend>
+          <div class="flex flex-wrap gap-2">
+            @for (interest of interests; track interest) {
+              <button type="button" (click)="toggleInterest(interest)"
+                      [attr.aria-pressed]="selectedInterests().includes(interest)"
+                      class="rounded-full border px-3.5 py-1.5 text-sm transition"
+                      [class]="selectedInterests().includes(interest)
+                        ? 'border-brand-blue/60 bg-brand-blue/15 text-brand-cream'
+                        : 'border-white/10 bg-white/[0.03] text-slate-400 hover:border-white/25 hover:text-brand-cream'">
+                {{ interest }}
+              </button>
+            }
+          </div>
+        </fieldset>
+
+        <label class="block">
+          <span class="mb-2 block text-sm font-medium text-slate-300">Anything else? <span class="text-slate-500">(optional)</span></span>
+          <textarea class="field min-h-[110px] resize-y" name="message" [(ngModel)]="model.message"
+                    placeholder="An idea you want to build, a skill you want to learn…"></textarea>
+        </label>
+
+        <button type="submit" class="btn-primary w-full !py-3.5">
+          Send my request
+          <app-icon name="send" class="h-4 w-4" />
+        </button>
+        <p class="text-center text-xs text-slate-500">Opens your email app with your message ready to send.</p>
+      </form>
+    </div>
+  </div>
 </section>

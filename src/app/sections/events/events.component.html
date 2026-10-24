@@ -1,8 +1,31 @@
-<section class="section events-section" id="events">
-  <div class="container">
-    <div class="events-heading"><div><p class="eyebrow">03 — Get involved</p><h2>Ways to<br><em>take part.</em></h2></div><a class="text-link dark-link" href="#join">Start a conversation <span>↗</span></a></div>
-    <div class="event-list">
-      @for (event of events; track event.title) { <article class="event-row"><div class="event-date"><strong>{{ event.day }}</strong><span>{{ event.month }}</span></div><div class="event-type">{{ event.type }}</div><div class="event-details"><h3>{{ event.title }}</h3><p>{{ event.meta }}</p></div><a class="round-arrow" href="#join" [attr.aria-label]="'Learn more about ' + event.title">↗</a></article> }
+<section class="section" id="programme">
+  <div class="container-x grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+    <div class="lg:sticky lg:top-32 lg:self-start" appReveal>
+      <span class="eyebrow">Get involved</span>
+      <h2 class="section-title">Ways to<br><span class="highlight">take part.</span></h2>
+      <p class="section-lead">
+        Drop in for a single workshop or commit to a semester-long project. There is a format for every schedule
+        and every level.
+      </p>
+      <a href="#join" class="btn-ghost mt-8">
+        Start a conversation
+        <app-icon name="arrow-right" class="h-4 w-4" />
+      </a>
     </div>
+
+    <ol class="space-y-4">
+      @for (program of programs; track program.title; let i = $index) {
+        <li class="card group flex gap-5 p-6 transition duration-500 hover:border-white/15 sm:p-7" appSpotlight [appReveal]="i * 90">
+          <span class="relative z-[1] grid h-14 w-14 shrink-0 place-items-center rounded-2xl border border-white/10 bg-ink-800 text-brand-sky transition group-hover:border-brand-blue/40 group-hover:text-brand-cream">
+            <app-icon [name]="program.icon" class="h-6 w-6" />
+          </span>
+          <div class="relative">
+            <span class="font-mono text-[11px] uppercase tracking-[0.16em] text-brand-sky">{{ program.cadence }}</span>
+            <h3 class="mt-1.5 text-xl font-semibold">{{ program.title }}</h3>
+            <p class="mt-2 leading-relaxed text-slate-400">{{ program.text }}</p>
+          </div>
+        </li>
+      }
+    </ol>
   </div>
 </section>

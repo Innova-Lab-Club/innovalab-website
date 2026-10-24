@@ -1,15 +1,37 @@
-<section class="section about-section" id="about">
-  <div class="container split-heading">
-    <div><p class="eyebrow">01 — Our mission</p><h2>A place to<br><em>try things.</em></h2></div>
-    <div class="heading-aside"><p>We believe students learn best when they have the freedom to explore, the support to keep going, and a community to build with.</p><a class="text-link dark-link" href="#activities">How we work <span>↓</span></a></div>
-  </div>
-  <div class="container about-grid">
-    <div class="about-image"><div class="image-label">Student-led · ISET Medenine <span>✦</span></div><div class="about-art"><span class="art-word">MAKE</span><span class="art-shape"></span><span class="art-small">with purpose</span></div></div>
-    <div class="about-content">
-      <p class="large-copy">Innova’Lab brings together students at <strong>ISET Medenine</strong> who want to move from consuming technology to understanding, shaping, and creating with it.</p>
-      <div class="values-list">
-        @for (value of values; track value.title) { <div class="value-item"><span class="value-number">{{ value.number }}</span><div><h3>{{ value.title }}</h3><p>{{ value.text }}</p></div><span class="value-arrow">↗</span></div> }
+<section class="section" id="about">
+  <div class="container-x">
+    <div class="grid gap-12 lg:grid-cols-2 lg:gap-20">
+      <div appReveal>
+        <span class="eyebrow">Our mission</span>
+        <h2 class="section-title">A place to<br><span class="highlight">try things.</span></h2>
       </div>
+      <div class="lg:pt-14" appReveal="120">
+        <p class="text-xl leading-relaxed text-slate-300 sm:text-2xl">
+          Innova’Lab brings together students at <span class="text-brand-cream">ISET Medenine</span> who want to move
+          from <span class="text-brand-cream">consuming</span> technology to <span class="text-brand-cream">understanding, shaping and creating</span> with it.
+        </p>
+        <p class="mt-6 leading-relaxed text-slate-400">
+          We believe students learn best with the freedom to explore, the support to keep going,
+          and a community to build with. No grades, no pressure: just real projects and good people.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-16 grid gap-4 md:grid-cols-3">
+      @for (value of values; track value.title; let i = $index) {
+        <article class="card group p-7 transition duration-500 hover:-translate-y-1 hover:border-white/15" appSpotlight [appReveal]="i * 100">
+          <div class="relative">
+            <div class="flex items-center justify-between">
+              <span class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-blue/15 text-brand-sky">
+                <app-icon [name]="value.icon" class="h-6 w-6" />
+              </span>
+              <span class="font-mono text-xs text-slate-600">0{{ i + 1 }}</span>
+            </div>
+            <h3 class="mt-8 text-xl font-semibold">{{ value.title }}</h3>
+            <p class="mt-2 leading-relaxed text-slate-400">{{ value.text }}</p>
+          </div>
+        </article>
+      }
     </div>
   </div>
 </section>
