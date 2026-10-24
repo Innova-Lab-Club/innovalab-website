@@ -69,7 +69,7 @@ export interface Faq {
 
 export const CLUB_NAME = 'Innova’Lab';
 export const CLUB_EMAIL = 'innovalab.club@gmail.com'; // TODO: real club email
-export const FOUNDED_YEAR = 2022;
+export const FOUNDED_YEAR = 2024;
 
 export const navLinks: NavLink[] = [
   { label: 'About', href: '#about' },
@@ -87,14 +87,14 @@ export const socialLinks: SocialLink[] = [
 
 export const marqueeTopics: string[] = [
   'Web Development', 'Artificial Intelligence', 'Robotics', 'IoT', 'UI/UX Design',
-  'Hackathons', 'Open Source', 'Embedded Systems', '3D Printing', 'Mobile Apps'
+  'Hackathons', 'Open Source', 'Embedded Systems', 'Mobile Apps'
 ];
 
 // TODO: replace with the club's real numbers
 export const stats: Stat[] = [
-  { value: 120, suffix: '+', label: 'Active members' },
-  { value: 30, suffix: '+', label: 'Workshops hosted' },
-  { value: 12, label: 'Projects built' },
+  { value: 30, suffix: '+', label: 'Active members' },
+  { value: 10, suffix: '+', label: 'Workshops hosted' },
+  { value: 8, label: 'Projects built' },
   { value: new Date().getFullYear() - FOUNDED_YEAR, suffix: ' yrs', label: 'Of building together' }
 ];
 
